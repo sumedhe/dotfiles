@@ -57,7 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;0m\]\[\033[48;5;10m\]\u\[\033[38;5;0m\]\[\033[48;5;255m\]@\[\033[38;5;0m\]\[\033[48;5;214m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;0m\]\[\033[48;5;10m\]\u\[\033[38;5;0m\]\[\033[48;5;255m\]@\[\033[38;5;0m\]\[\033[48;5;214m\]\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;0m\]\[\033[48;5;10m\]\u@\h\[\033[00m\]:\w\$ '
+    PS1="\[\033[38;5;33m\]\[\033[48;5;231m\] \u \[$(tput sgr0)\]\[\033[38;5;15m\]\[\033[48;5;33m\] \h \[$(tput sgr0)\]\[\033[38;5;33m\]\[\033[48;5;239m\]\[$(tput sgr0)\]\[\033[38;5;255m\]\[\033[48;5;239m\]:\\$ \[$(tput sgr0)\]\[\033[38;5;239m\]\[$(tput sgr0)\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -130,3 +132,8 @@ export PATH=${PATH}:~/.config/composer/vendor/bin
 export PATH=${PATH}:~/bin
 
 alias emacs='emacs25 -nw'
+
+#TERM='rxvt-unicode'
+COLORTERM='rxvt-unicode-256color'
+
+. ~/Desktop/z/z.sh
