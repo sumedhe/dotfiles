@@ -1,3 +1,5 @@
+" vim-bootstrap 3340bde
+
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
@@ -103,8 +105,8 @@ Plug 'arnaud-lb/vim-php-namespace'
 
 " python
 "" Python Bundle
-Plug 'davidhalter/jedi-vim'
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+"Plug 'davidhalter/jedi-vim'
+"Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 
 
 "*****************************************************************************
@@ -431,7 +433,7 @@ endif
 noremap <leader>z :bp<CR>
 noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
+"noremap <leader>w :bn<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
@@ -488,7 +490,7 @@ let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
+"let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
@@ -638,7 +640,7 @@ noremap <C-F7> <C-w>-
 noremap <C-F8> <C-w>+
 noremap <Leader>q :qa<CR>
 noremap <Leader>/ :cd 
-noremap <Leader>s :w<CR>
+noremap <Leader>w :w<CR>
 noremap <Leader>r :QuickRun <CR>
 
 set mouse=a
