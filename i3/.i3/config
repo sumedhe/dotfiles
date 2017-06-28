@@ -17,6 +17,7 @@ set $mod Mod4
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Dejavu Sans Mono 8
+#font pango:Dejavu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -29,7 +30,7 @@ font pango:Dejavu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec /usr/bin/terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -92,8 +93,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
+bindsym $mod+1 workspace 1:Home
+bindsym $mod+2 workspace 2:Web
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -109,8 +110,8 @@ bindsym $mod+Control+Right workspace next
 bindsym $mod+Control+Left workspace prev
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+1 move container to workspace 1:Home
+bindsym $mod+Shift+2 move container to workspace 2:Web
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
@@ -156,6 +157,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        position top
         status_command i3blocks
 		#status_command i3status
 		
@@ -201,12 +203,12 @@ mode "$mode_display" {
     bindsym Escape mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
-bindsym $mod+x mode "$mode_display"
+bindsym $mod+p mode "$mode_display"
 
 
 # Controls
-set $Lock i3lock -i ~/Pictures/lockscreen/lock.png
-set $Locker i3lock -i ~/Pictures/lockscreen/lock.png && sleep 1 && pgrep i3lock && xset dpms force off
+set $Lock /opt/i3lock-fancy/lock
+set $Locker /opt/i3lock-fancy/lock && sleep 1 && pgrep i3lock && xset dpms force off
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (Shift+r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -255,19 +257,21 @@ set $term i3-sensible-terminal
 bindsym Print exec  gnome-screenshot
 bindsym $mod+Print exec gnome-screenshot -a
 bindsym $mod+i exec firefox
-bindsym $mod+q exec thunar
+bindsym $mod+q exec nautilus
 bindsym $mod+g exec geary
 bindsym $mod+m exec audacious
 bindsym $mod+t exec run-or-raise stardict
-bindsym $mod+backslash exec $term -e wicd-curses
+#bindsym $mod+backslash exec $term -e wicd-curses
 bindsym $mod+slash exec $term -e htop
 bindsym $mod+period exec swap-clean
-bindsym $mod+z exec gvim 
+bindsym $mod+z exec gvim
 bindsym $mod+b exec leafpad ~/Documents/Note/quicknotes.txt
+bindsym $mod+x exec gnome-control-center
 
 #startup
 exec gnome-settings-daemon &
 exec start-pulseaudio-x11 &
+exec --no-startup-id nm-applet
 
 #touchpad conf
 exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Tapping Enabled" "1"
@@ -276,8 +280,13 @@ exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Accel Spee
 
 #startup
 exec geary --hidden
+#exec --no-startup-id i3-msg 'workspace 3:Term; exec /usr/bin/terminator'
+exec --no-startup-id i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 1:Home; exec /usr/bin/audacious'
+exec --no-startup-id i3-msg "workspace 1:Home"
 
 #rofi
 set $rofi exec rofi -show run -no-auto-select -font "Roboto Mono 13" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 50 -lines 5 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#101010"
 bindsym $mod+d exec $rofi
 
+new_window 1pixel
