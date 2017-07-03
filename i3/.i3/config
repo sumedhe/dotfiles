@@ -156,12 +156,12 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        position top
-        status_command i3blocks
+#bar {
+        #position top
+        #status_command i3blocks
 		#status_command i3status
 		
-}
+#}
 
 
 ## MY CONFIGS
@@ -286,7 +286,55 @@ exec --no-startup-id i3-msg 'workspace 1:Home; exec /usr/bin/audacious'
 exec --no-startup-id i3-msg "workspace 1:Home"
 
 #rofi
-set $rofi exec rofi -show run -no-auto-select -font "Roboto Mono 13" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 50 -lines 5 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#101010"
+
+
+set $rofi exec rofi -show run -no-auto-select -font "Roboto Mono 13" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 50 -lines 6 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#101010"
 bindsym $mod+d exec $rofi
 
-new_window 1pixel
+bindsym $mod+o exec /home/sumedhe/myscripts/rofi-locate.sh
+
+#new_window 1pixel
+
+
+bindsym --release $mod+u exec --no-startup-id xdotool key --clearmodifiers Super_L+shift+Down Super_L+r Up Up Up Up Escape
+
+
+
+
+
+# color defines for zenburn styled i3
+set $bg     #2c2c2e
+set $fg     #9f9f9f
+set $hi     #efef8f
+set $ac     #a0afa0
+set $tx     #040404
+set $ia     #8f8f8f
+set $be     #8faf9f
+set $yw     #ccdc90
+set $gn     #88b090
+set $rd     #e89393
+set $bl     #004088
+set $wh     #ffffff
+
+# set some nice colors      border     background  text
+client.focused              $bl        $bl         $wh
+client.unfocused            $bg        $bg         $ia
+client.focused_inactive     $bg        $bg         $ac
+client.urgent               $rd        $rd         $tx
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status --config ~/.i3/i3status.conf
+
+    status_command i3blocks
+    colors {
+        background          $bg
+        statusline          $fg
+        separator           $hi
+        focused_workspace   $gn        $bg        $ac
+        active_workspace    $gn        $ac        $tx
+        inactive_workspace  $bg        $bg        $ia
+        urgent_workspace    $rd        $bg        $ac
+    }
+}
