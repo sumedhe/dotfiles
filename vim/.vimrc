@@ -49,6 +49,7 @@ Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-quickrun'
 Plug 'Shougo/neocomplete.vim'
+Plug 'chrisbra/Colorizer'
 "Plug 'Valloric/YouCompleteMe'
 
 if isdirectory('/usr/local/opt/fzf')
@@ -652,4 +653,5 @@ au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
 
+colorscheme Tomorrow-Night-Eighties
 
