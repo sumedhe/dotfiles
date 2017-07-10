@@ -9,15 +9,15 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Dejavu Sans Mono 8
-#font pango:Dejavu Sans Mono 8
+#font pango:Dejavu Sans Mono Bold 8
+font pango:Bitstream Vera Sans Mono Bold  7
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -30,7 +30,9 @@ font pango:Dejavu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/terminator
+bindsym $mod+Shift+Return exec /usr/bin/terminator
+bindsym $mod+Return exec /usr/bin/urxvt
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -249,8 +251,8 @@ bar {
 }
 
 #settings
-exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-fill ~/Pictures/Debian/Illusion-Abstract-Wallpaper-Hd.jpg
+#exec --no-startup-id nm-applet
+#exec --no-startup-id feh --bg-fill ~/Pictures/Debian/Illusion-Abstract-Wallpaper-Hd.jpg
 
 #keybindings
 set $term i3-sensible-terminal
@@ -262,38 +264,41 @@ bindsym $mod+g exec geary
 bindsym $mod+m exec audacious
 bindsym $mod+t exec run-or-raise stardict
 #bindsym $mod+backslash exec $term -e wicd-curses
-bindsym $mod+slash exec $term -e htop
+bindsym $mod+slash exec $term -e glances
 bindsym $mod+period exec swap-clean
 bindsym $mod+z exec gvim
 bindsym $mod+b exec leafpad ~/Documents/Note/quicknotes.txt
 bindsym $mod+x exec gnome-control-center
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+grave workspace next
+bindsym $mod+Shift+grave workspace prev
 
 #startup
-exec gnome-settings-daemon &
-exec start-pulseaudio-x11 &
-exec --no-startup-id nm-applet
+#exec gnome-settings-daemon &
+#exec start-pulseaudio-x11 &
+#exec --no-startup-id nm-applet
 
 #touchpad conf
-exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Tapping Enabled" "1"
-exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Natural Scrolling Enabled" "1"
-exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Accel Speed" "0.5"
+#exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Tapping Enabled" "1"
+#exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Natural Scrolling Enabled" "1"
+#exec --no-startup-id xinput set-prop "DLL0651:00 06CB:2985" "libinput Accel Speed" "0.5"
 
 #startup
-exec geary --hidden
+exec --no-startup-id ~/myscripts/startup.sh
+#exec geary --hidden
 #exec --no-startup-id i3-msg 'workspace 3:Term; exec /usr/bin/terminator'
 exec --no-startup-id i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 1:Home; exec /usr/bin/audacious'
 exec --no-startup-id i3-msg "workspace 1:Home"
 
+
 #rofi
-
-
-set $rofi exec rofi -show run -no-auto-select -font "Roboto Mono 13" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -width 50 -lines 6 -padding 20 -separator-style none -hide-scrollbar -bw 4 -bc "#101010"
+set $rofi exec ~/myscripts/rofi_run.sh
 bindsym $mod+d exec $rofi
 
 bindsym $mod+o exec /home/sumedhe/myscripts/rofi-locate.sh
 
-#new_window 1pixel
+new_window 1pixel
 
 
 bindsym --release $mod+u exec --no-startup-id xdotool key --clearmodifiers Super_L+shift+Down Super_L+r Up Up Up Up Escape
@@ -325,6 +330,7 @@ client.urgent               $rd        $rd         $tx
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    position top
     status_command i3status --config ~/.i3/i3status.conf
 
     status_command i3blocks
@@ -337,4 +343,44 @@ bar {
         inactive_workspace  $bg        $bg        $ia
         urgent_workspace    $rd        $bg        $ac
     }
+}
+
+
+
+#gaps
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
