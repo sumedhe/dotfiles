@@ -15,13 +15,13 @@ hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-Mod=Mod1    # Use alt as the main modifier
-#Mod=Mod4   # Use the super key as the main modifier
+#Mod=Mod1    # Use alt as the main modifier
+Mod=Mod4   # Use the super key as the main modifier
 
-hc keybind $Mod-Escape quit
-hc keybind $Mod-Shift-r reload
-hc keybind $Mod-Shift-q close
-hc keybind $Mod-Return spawn x-terminal-emulator # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Control-e   quit
+hc keybind $Mod-Shift-r     reload
+hc keybind $Mod-Shift-q     close
+hc keybind $Mod-Return      spawn x-terminal-emulator # use your $TERMINAL with xterm as fallback
 
 # basic movement
 # focusing clients
@@ -46,8 +46,11 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-u spawn bash -c 'herbstclient split bottom 0.5; herbstclient focus down'      #split   bottom  0.5
+hc keybind $Mod-o spawn bash -c 'herbstclient split right 0.5; herbstclient focus right'      #split   right   0.5
+hc keybind $Mod-Shift-u spawn bash -c 'herbstclient split bottom 0.5; herbstclient shift down'
+hc keybind $Mod-Shift-o spawn bash -c 'herbstclient split right 0.5; herbstclient shift right'
+
 
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
@@ -168,7 +171,9 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     "$panel" $monitor &
 done
 
-
+# bottom panel
+herbstclient pad 0 '' '' 20 ''
+tint2 &
 
 # --MyCommands--
 hc keybind $Mod-d spawn ~/myscripts/rofi_run.sh
