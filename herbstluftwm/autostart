@@ -172,11 +172,11 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
 done
 
 # bottom panel
-herbstclient pad 0 '' '' 20 ''
-tint2 &
+herbstclient pad 0 '' '' 18 ''
 
 # --MyCommands--
-hc keybind $Mod-d spawn ~/myscripts/rofi_run.sh
 ~/.config/herbstluftwm/keybinds.sh &
-~/.config/herbstluftwm/trayer.sh &
-~/myscripts/startup.sh &
+~/.config/herbstluftwm/scripts/lasttag.sh &
+#~/.config/herbstluftwm/trayer.sh &
+~/scripts/startup.sh &
+(killall tint2; sleep 1 && tint2) &
