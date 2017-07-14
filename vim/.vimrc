@@ -50,6 +50,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'thinca/vim-quickrun'
 Plug 'Shougo/neocomplete.vim'
 Plug 'chrisbra/Colorizer'
+Plug 'https://github.com/scrooloose/nerdcommenter.git'
 "Plug 'Valloric/YouCompleteMe'
 
 if isdirectory('/usr/local/opt/fzf')
@@ -432,12 +433,12 @@ endif
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
+"noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
 "noremap <leader>w :bn<CR>
 
 "" Close buffer
-noremap <leader>c :bd<CR>
+noremap <leader>q :bd<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
@@ -639,10 +640,12 @@ noremap <C-F5> <C-w><
 noremap <C-F6> <C-w>>
 noremap <C-F7> <C-w>-
 noremap <C-F8> <C-w>+
-noremap <Leader>q :qa<CR>
+noremap <Leader><Esc> :qa<CR>
+noremap <C-Esc>    :qa!<CR>
 noremap <Leader>/ :cd 
 noremap <Leader>w :w<CR>
 noremap <Leader>r :QuickRun <CR>
+noremap <Leader>ch :ColorHighlight <CR>
 
 set mouse=a
 
