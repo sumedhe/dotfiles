@@ -123,8 +123,10 @@ function settitle() {
 }
 
 
-export PATH=${PATH}:~/Android/Sdk/tools
-export PATH=${PATH}:~/Android/Sdk/platform-tools
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=${PATH}:$ANDROID_HOME/tools
+export PATH=${PATH}:$ANDROID_HOME/platform-tools
 # added by Anaconda3 4.2.0 installer
 export PATH="/home/sumedhe/anaconda3/bin:$PATH"
 # composer bin  (laravel)
