@@ -132,6 +132,9 @@ export PATH="/home/sumedhe/anaconda3/bin:$PATH"
 # composer bin  (laravel)
 export PATH=${PATH}:~/.config/composer/vendor/bin
 export PATH=${PATH}:~/bin
+export PATH=${PATH}:~/.gradle/wrapper/dists/gradle-3.3-all/55gk2rcmfc6p2dg9u9ohc3hw9/gradle-3.3/bin/
+export PATH=${PATH}:/usr/lib/jvm/default-java
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 alias emacs='emacs25 -nw'
 
