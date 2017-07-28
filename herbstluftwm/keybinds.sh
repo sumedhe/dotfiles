@@ -9,7 +9,7 @@ Mod=Mod4   # Use the super key as the main modifier
 Alt=Mod1
 
 hc keybind $Alt-a spawn audacious
-hc keybind $Alt-i spawn firefox
+hc keybind $Alt-i spawn x-www-browser
 hc keybind $Alt-m spawn geary
 hc keybind $Alt-g spawn gitg
 hc keybind $Alt-b spawn leafpad ~/Documents/Note/quicknotes.txt
@@ -42,5 +42,7 @@ hc keybind $Mod-d spawn ~/scripts/rofi_run.sh
 hc keybind $Mod-e spawn ~/scripts/rofi-locate.sh
 hc keybind $Mod-x spawn ~/.config/herbstluftwm/scripts/herbstcommander.sh
 hc keybind $Mod-t spawn ~/.config/herbstluftwm/scripts/toggledualhead.sh
+hc keybind $Mod-w spawn ~/.config/herbstluftwm/scripts/wselect.sh
+hc keybind $Mod-F1 spawn ~/scripts/search-in-browser.sh
 hc keybind $Mod-grave emit_hook goto_last_tag
 

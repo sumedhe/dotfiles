@@ -184,6 +184,6 @@ while true ; do
     ### dzen2 ###
     # After the data is gathered and processed, the output of the previous block
     # gets piped to dzen2.
-} 2> /dev/null | dzen2 -w $panel_width -x $x -y $y -fn "Roboto Mono:size=8" -h $panel_height \
+} 2> /dev/null | dzen2 -w $panel_width -x $x -y $y -fn "Bitstream Vera Sans:size=8" -h $panel_height \
     -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' \
     -ta l -bg "$bgcolor" -fg '#efefef'
