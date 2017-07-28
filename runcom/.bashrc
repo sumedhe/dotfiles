@@ -137,6 +137,11 @@ export PATH=${PATH}:/usr/lib/jvm/default-java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 alias emacs='emacs25 -nw'
+alias agi='sudo apt-get install'
+alias agu='sudo apt-get update'
+alias agr='sudo apt-get remove'
+alias acs='apt-cache search'
+
 
 #TERM='rxvt-unicode'
 COLORTERM='rxvt-unicode-256color'
