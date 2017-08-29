@@ -15,4 +15,4 @@ case $1 in
         ;;
 esac
 
-amixer get Master | grep '%' | dzen2 -p 1
+amixer get Master | grep '%' | dzen2 -p 1 -fn "Roboto:size=9:weight=bold" -h 14

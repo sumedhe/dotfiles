@@ -15,4 +15,4 @@ case $1 in
 esac
 
 read max < ${brightness/%brightness/max_brightness}
-echo "Backlight $((value * 100 / max))%" | dzen2 -p 1
+echo "Backlight $((value * 100 / max))%" | dzen2 -p 1 -fn "Roboto:size=9:weight=bold" -h 14 

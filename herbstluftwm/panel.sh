@@ -13,9 +13,9 @@ y=${geometry[1]}
 panel_width=${geometry[2]}
 panel_height=16
 font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
-bgcolor=$(hc get frame_border_normal_color)
-selbg=$(hc get window_border_active_color)
-selfg='#101010'
+bgcolor='#303030'  #$(hc get frame_border_normal_color)
+selbg='#5058a0'    #$(hc get window_border_active_color)
+selfg='#ffffff'
 
 ####
 # Try to find textwidth binary.
@@ -184,6 +184,6 @@ while true ; do
     ### dzen2 ###
     # After the data is gathered and processed, the output of the previous block
     # gets piped to dzen2.
-} 2> /dev/null | dzen2 -w $panel_width -x $x -y $y -fn "Bitstream Vera Sans:size=8" -h $panel_height \
+} 2> /dev/null | dzen2 -w $panel_width -x $x -y $y -fn "Roboto:size=8:weight=bold" -h $panel_height \
     -e 'button3=;button4=exec:herbstclient use_index -1;button5=exec:herbstclient use_index +1' \
     -ta l -bg "$bgcolor" -fg '#efefef'
